@@ -1,6 +1,6 @@
 import pytest
 
-from kandae.kandae import smallest_sum_subarr
+from kandae.kandae import smallest_sum_subarr, smallestSubArrayLen
 
 
 @pytest.mark.parametrize(
@@ -12,3 +12,12 @@ from kandae.kandae import smallest_sum_subarr
 )
 def test_kandae(input, expected):
     assert smallest_sum_subarr(arr=input) == expected
+
+
+@pytest.mark.parametrize(
+    "input, target, expected", [
+        ([2, 3, 1, 2, 4, 3], 7, (2, 4, 5))
+    ]
+)
+def test_smallestSubArrayLen(input, target, expected):
+    assert smallestSubArrayLen(target=target, nums=input) == expected
