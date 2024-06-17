@@ -2,8 +2,6 @@
 "standard" implementation of Kandae's Algorithm.
 https://en.wikipedia.org/wiki/Maximum_subarray_problem
 """
-from dataclasses import dataclass
-
 from bisect import bisect_left
 from typing import Tuple, List
 
@@ -54,18 +52,20 @@ def smallest_sum_subarr(arr) -> Tuple[int, int, int]:
     return min_so_far, start, end
 
 
-def smallestSubArrayLen(target: int, nums: List[int]) -> Tuple[int, int, int]:
+def smallestSubArrayLen(target: int, nums: List[int]) -> Tuple[int, int]:
     """
     Return the length of the smallest contiguous subarray with a sum greater than the target value,
     and the start and end indexes of that subarray.
 
     :param target: Target sum value.
     :param nums: List of numbers.
-    :return: A tuple, whose first element is the length of the subarray, and the second and third elements are the indexes.
+    :return: A tuple, whose first element the start index of the subarray, and the second element
+             is the end index of the subarray. If no such subarray exists, return (-1, -1).
     """
     n = len(nums)
+    # No valid subarray.
     if n == 0:
-        return 0, -1, -1
+        return -1, -1
 
     ans = float('inf')
     start_index = -1
@@ -85,4 +85,4 @@ def smallestSubArrayLen(target: int, nums: List[int]) -> Tuple[int, int, int]:
                 start_index = i - 1
                 end_index = bound - 1
 
-    return (ans, start_index, end_index) if ans != float('inf') else (0, -1, -1)
+    return (start_index, end_index) if ans != float('inf') else (-1, -1)

@@ -16,7 +16,9 @@ def test_kandae(input, expected):
 
 @pytest.mark.parametrize(
     "input, target, expected", [
-        ([2, 3, 1, 2, 4, 3], 7, (2, 4, 5))
+        ([2, 3, 1, 2, 4, 3], 7, (4, 5)),
+        ([2, 3, 2], 7, (0, 2)),
+        ([2], 7, (-1, -1))
     ]
 )
 def test_smallestSubArrayLen(input, target, expected):
